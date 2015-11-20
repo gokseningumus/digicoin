@@ -93,44 +93,64 @@ public class DigicoinServlet extends HttpServlet {
 			PrintWriter out = response.getWriter();
 			HashMap<String,String> clientReport = this.controller.getReportByClient();
 
+			out.println("<div class='row'>");
+			out.println("<div class='col-md-6'>");
 			out.println("<div class='panel panel-default'>");
 			out.println("<div class='panel-heading'>Clients</div>");
 			out.println("<div class='panel-body'> Client A: "+ clientReport.get("Client A") 
 												+"<br> Client B: " + clientReport.get("Client B")
 												+"<br> Client C: " + clientReport.get("Client C") 
 												+ "</div>");
-			out.println("</div>");
+			out.println("</div>"); //panel
+			out.println("</div>"); //col
 			
 			HashMap<String,String> brokerReport = this.controller.getReportByBroker();
 			
+			out.println("<div class='col-md-6'>");
 			out.println("<div class='panel panel-default'>");
 			out.println("<div class='panel-heading'>Brokers</div>");
 			out.println("<div class='panel-body'> Broker 1: "+ brokerReport.get("Broker 1") 
 												+"<br> Broker 2: " + brokerReport.get("Broker 2")
-												+ "</div>");
-			out.println("</div>");
-
+												+ "<br/>&nbsp;</div>");
+			out.println("</div>"); //panel
+			out.println("</div>"); //col
+			
+			out.println("</div>"); //row
 			ArrayList<Transaction> report = this.controller.getReport();
 			Iterator<Transaction> it_report = report.iterator();
+			
+			out.println("<div class='row'>");
 			
 			out.println("<div class='panel panel-default'>");
 			out.println("<div class='panel-heading'>Transactions</div>");
 			out.println("<div class='panel-body'> ");
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss.SSS");
+			out.println("<table class='table table-striped'>");
+			out.println("<thead><tr>"
+				          +"<th>#Id</th>"
+				          +"<th>Client Name</th>"
+				          +"<th>Operation</th>"
+				          +"<th>Amount</th>"
+				          +"<th>Cost</th>"
+				          +"<th>Time</th>"
+				        +"</tr></thead><tbody>");
+						
 			while(it_report.hasNext()){
 				Transaction transaction = it_report.next();
-				
-				out.println("<p class='text-nowrap'>" + transaction.getId() + "|" 
-						+ transaction.getOrder().getClient().getName() + "|"
-						+ transaction.getOrder().getOperation()  + "|"
-						+ transaction.getOrder().getAmount() + "|"
-						+ transaction.getCost().toString() + "|"
-						+ sdf.format(transaction.getTime()) + "</p>");
+				out.println("<tr>");
+				out.println("<td>" + transaction.getId() + "</td><td>" 
+						+ transaction.getOrder().getClient().getName() + "</td><td>"
+						+ transaction.getOrder().getOperation()  + "</td><td>"
+						+ transaction.getOrder().getAmount() + "</td><td>"
+						+ transaction.getCost().toString() + "</td><td>"
+						+ sdf.format(transaction.getTime()) + "</td>");
+				out.println("</tr>");
 			}
 			
+			out.println("</tbody></table>"); //table
 			out.println("</div></div>");
-
+			out.println("</div>"); //row
 		}
 	}
 

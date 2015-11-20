@@ -23,7 +23,7 @@
           <a class="navbar-brand" href="#">InvestoBank DigiCoin Exchange Center</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-5">
-          <p class="navbar-text navbar-right">Hello, CitiUser!</p>
+          <p class="navbar-text navbar-right">Hello, InvestoUser!</p>
         </div>
       </div>
     </nav>
@@ -36,10 +36,10 @@
 	  			<button type="button" class='btn btn-success pull-right input-lg' name="reportBtn" value="report" id="reportBtn">Get Report!</button>
 			</h2>
     	</div>
-    	<div id="result"></div>
+    	
 		<div class="panel-body">
 		
-		<form class="form-horizontal" action="digicoin" method="post" id="orderForm">
+		<form class="form-inline" action="digicoin" method="post" id="orderForm">
 		
 		  <div class="form-group">  
 		    <div class="input-group">
@@ -70,10 +70,12 @@
 		    </div>    
 		  </div>
 		  
-		  <button type="button" class="btn btn-primary input-lg btn-block" name="orderBtn" value="order" id="orderBtn">Order Now!</button>
+		  <button type="button" class="btn btn-primary input-lg" name="orderBtn" value="order" id="orderBtn">Order Now!</button>
 
 		</form>
 		<br>
+		<div id="result"></div>
+		
 		</div>
 	  </div>
 	</div>
